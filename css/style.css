@@ -1,0 +1,178 @@
+@media screen and (min-width: 1366px){
+	#texto {
+		height: 500px;
+	}
+}
+@media screen and (min-width: 1920px){
+	#texto {
+		height: 800px;
+	}
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+	cursor: url('../img/cursor.cur'), auto;
+	overflow: hidden;
+	
+	background-color: #E5E6DA;
+}
+@font-face {
+font-family: "Hack";
+src: url("fonts/Hack-Regular.ttf");
+}
+@font-face {
+	font-family: "Hack";
+	src: url("fonts/Hack-Bold.ttf");
+	font-weight: bold;
+}
+@font-face {
+	font-family: "Hack";
+	src: url("fonts/Hack-Italic.ttf");
+	font-style: italic, oblique;
+}
+@font-face {
+	font-family: "Hack";
+	src: url("fonts/Hack-BoldItalic.ttf");
+	font-weight: bold;
+	font-style: italic, oblique;
+}
+.span_Messenger {
+	position: fixed;
+	top:0;
+	left: 20%;
+	width: 800px;
+	height: 42px;
+	z-index: 20;
+}
+#span_Construction:hover {
+	color:red;
+}
+/*=====
+	TEXTO
+  ===== */
+#texto {
+	display: block;
+	resize: none;
+	overflow-x: hidden;
+	font-family: Hack, monospace;
+	text-align: justify;
+	line-height: 200%;
+	
+	width: 40%;
+	margin: 0 auto;
+	background-color: #E5E6DA;
+	font-size: 20px;
+	padding: 40px 20px;
+}
+
+/*=====
+	BARRA DE ROLEGEM
+  ===== */
+::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: #dfe0d1;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+	background-color: #f8faf8;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(167,110,79);
+	background-color: #c7c3a9;
+	
+}
+/*=====
+	CORDA SELEÇÃO
+  ===== */
+::selection {
+  background: #ffb7b7; 
+}
+::-moz-selection {
+  background: #ffb7b7; 
+}
+/*=====
+	NAV
+  ===== */
+nav {
+	position: relative;
+	width: 100%;
+	height: 40px;
+	z-index: 2;
+	background-color: #E5E6DA;
+}
+/*=====
+	MENU DE FERRAMENTAS
+  ===== */
+.dropdown {
+	position: absolute;
+	display: inline-block;
+}
+.togglebtn {
+	width: 60px;
+	height: 40px;
+	float: left;
+}
+.dropdown-content {
+	display: none;
+	position: relative;
+	margin-top: 60px;
+	background-color: #E5E6DA;
+	cursor: pointer;
+}
+.dropdown-content li {
+	color: black;
+	font-family: 'Roboto';
+	font-size: 16px;
+	padding: 10px 20px;
+	display: block;
+	text-decoration: none;
+	cursor: pointer;
+}
+.dropdown-content li:hover {
+	font-weight: bold;
+	color: #1D69B4;
+}
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+.dropdown:hover .togglebtn {
+	background-color: #dfe0d1;
+}
+.fileInterface {
+	overflow: hidden;
+	position: relative;
+	cursor: pointer;
+}
+
+.fileInterface[type=file] {
+	display: none;
+	cursor: inherit;
+}
+
+/*=====
+	Contador de Palavras
+  ===== */
+#words-counter {
+	position: fixed;
+	bottom: 20px;
+	right: 30px;
+	
+	font-size: 20px;
+	color: grey;
+}
+/*=====
+	SPAN - MENSAGEM SALVA
+  ===== */	
+span {
+	font-size: 16px;
+	color: grey;
+	font-style: italic;
+}
+.center_Span {
+	margin: 12px 0px 0px 0px;
+	text-align: center;
+}

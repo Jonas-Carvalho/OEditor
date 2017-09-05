@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>OEditor</title>
+
+	
+	<!-- CSS -->
+	<link href="css/normalize.css" rel="stylesheet" type="text/css"/>
+	<link href="css/style.css" rel="stylesheet" type="text/css"/>
+	
+	<!-- FONT -->
+	<link href="https://fonts.googleapis.com/css?family=Fira+Sans|Roboto" rel="stylesheet">
+
+	<!-- JAVA -->	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/FileSaver.js"></script>
+	<script src="js/countable.js"></script>
+	<script src="js/autosave.js"></script>
+	<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+	
+</head>
+<body>
+
+	<nav>
+	
+		<div onselectstart="return false;" class="dropdown">
+			<button class="togglebtn">
+				<span><img src="img/toggle.png"></span>
+			</button>
+			<div class="dropdown-content">
+				<button onclick="novo()" id="novo" class="fileInterface"><li>Novo</li></button>
+				<br>
+				<input type="file" onclick="abrir()" accept=".txt" name="abrir" id="abrir" class="fileInterface" />
+				<label for="abrir" class="fileInterface"><li>Abrir</li></label>
+				
+				<button onclick="salvar_TXT()" id="salvar_TXT" class="fileInterface" type="submit"><li>Salvar em TXT</li></button>
+				<br>
+				<button onclick="salvar_PDF()" id="salvar_PDF" class="fileInterface" type="submit"><li>Salvar em PDF <span id="span_Construction">[em construção]</span></li></button>
+				<br>
+				<button onclick="imprimir()" id="imprimir" class="fileInterface"><li>Imprimir <span id="span_Construction">[em construção]</span></li></button>
+				<hr>
+				<button onclick="corretor()" id="corretor" class="fileInterface"><li>Corretor Ortográfico</li></button>
+			</div>
+		</div>
+		
+	</nav>
+	
+	<div class="span_Messenger">
+		<div class="center_Span">
+			<span id="saved_Msg"></span>
+		</div>
+	</div>
+
+	<textarea id="texto" placeholder="Conte-me uma história..." spellcheck="false" charset="utf-8"></textarea>
+
+	
+	<div>
+	
+	<dialog class="popup">
+		<input id="autor" placeholder="Autor..." charset="utf-8">
+		<input id="titulo" placeholder="Título..." charset="utf-8">
+		<button id="hide">OK</button>
+	</dialog>
+	
+	<span id="words-counter">0</span>
+	
+	
+	<!--Arraste de img OFF-->
+	<script>
+		$(document).ready(function () {
+			$('img').on('dragstart', function () {
+				return false;
+			});
+		});
+		</script>
+
+	
+<!--Word Counter-->
+	<script>
+		$(document).ready(function()
+		{
+		  $('#texto').simplyCountable({
+		    counter: '#words-counter',
+        countType: 'words',
+        countDirection: 'up',
+		  });
+		});
+	</script>
+	
+	<script>
+	
+	<!--Função NOVO-->
+	function novo() {
+			window.open('index.html', '_blank');
+		}
+		
+	<!--Função ABRIR-->
+	function abrir() {
+		document.getElementById('abrir').onchange = function(event) {
+		  var fileToLoad = event.target.files[0];
+
+		  if (fileToLoad) {
+			var reader = new FileReader();
+			reader.onload = function(fileLoadedEvent) {
+			  var textFromFileLoaded = fileLoadedEvent.target.result;
+			  document.getElementById('texto').value = textFromFileLoaded;
+			};
+			reader.readAsText(fileToLoad, 'UTF-8');
+		  }
+		};
+	}
+	
+	<!--Função SALVAR-->
+	function salvar_TXT() {
+		var titulo = prompt("Título:");
+		if ((titulo != null) || (titulo != "")) {
+			var raw_Texto = $('#texto').val();
+			var texto = raw_Texto.replace(/\n/g, "\r\n");
+			var blob = new Blob([texto],{type:"text/plain;charset=utf-8"});
+			saveAs(blob,titulo+".txt");
+		}
+	}
+	
+	function imprimir() {
+		var raw_Texto = $('#texto').val();
+		var texto = raw_Texto.replace(/\n/g, "\r\n");
+		var file = document.getElementById(texto);
+		file.focus();
+		file.contentWindow.print();
+		}
+	</script>
+
+	<script>
+	
+	var action = 1;
+	
+	function corretor () {
+		if ( action == 1 ) {
+			$('#texto').attr("spellcheck", "true");
+			$('#corretor').css("font-weight", "bold");
+			action = 2;
+		}else {
+			$('#texto').attr("spellcheck", "false");
+			$('#corretor').css("font-weight", "normal");
+			action = 1;
+		}
+	}
+	</script>
+	
+	<script>
+	function salvar_PDF () {
+		
+	}
+	
+	function imprimir() {
+		
+	}
+	</script>
+	
+	
+</body>
+</html>
